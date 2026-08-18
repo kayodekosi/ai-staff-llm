@@ -1,0 +1,28 @@
+# PASTA-style hyperparameters for staff-persona fine-tuning
+# Base model recommendation: NVIDIA Nemotron 3 Nano 4B (or similar small instruct model)
+# Method: QLoRA inside Unsloth Studio
+
+method: QLoRA
+lora_rank: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: all-linear
+
+max_seq_length: 2048
+learning_rate: 0.0002
+lr_scheduler_type: cosine
+warmup_steps: 20
+optimizer: adamw_8bit
+weight_decay: 0.01
+
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 4
+num_train_epochs: 2
+max_steps: 0
+
+gradient_checkpointing: unsloth
+seed: 3407
+packing: false
+train_on_completions: false
+logging_steps: 10
+eval_steps: 40
